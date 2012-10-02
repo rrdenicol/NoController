@@ -21,9 +21,8 @@ MESSAGE* process_message(CONNECTION* conn, MESSAGE* msg) {
         msg_pack_1(fm, "ofp_flow_mod.header.type", OFPT_FLOW_MOD);
         msg_pack_2(fm, "ofp_flow_mod.header.length", 80);
         msg_pack_4(fm, "ofp_flow_mod.header.xid", 0xcafebabe);
-        msg_pack_4(fm, "ofp_flow_mod.match.wildcards", ~OFPFW_IN_PORT);
-        msg_pack_2(fm, "ofp_flow_mod.match.in_port", 1);
-        msg_padding(fm, 34);
+        msg_pack_4(fm, "ofp_flow_mod.match.wildcards", -1);
+        msg_padding(fm, 36);
         msg_pack_8(fm, "ofp_flow_mod.cookie", 0xdeadbeef);
         msg_pack_2(fm, "ofp_flow_mod.command", OFPFC_ADD);
         msg_pack_2(fm, "ofp_flow_mod.idle_timeout", 60);
@@ -34,7 +33,7 @@ MESSAGE* process_message(CONNECTION* conn, MESSAGE* msg) {
         msg_pack_2(fm, "ofp_flow_mod.flags", 0);
         msg_pack_2(fm, "ofp_flow_mod.actions[0].type", OFPAT_OUTPUT);
         msg_pack_2(fm, "ofp_flow_mod.actions[0].len", 8);
-        msg_pack_2(fm, "ofp_flow_mod.actions[0].port", 3);
+        msg_pack_2(fm, "ofp_flow_mod.actions[0].port", OFPP_FLOOD);
         msg_pack_2(fm, "ofp_flow_mod.actions[0].max_len", 256);
         ofp_header_set_length(fm->data, fm->length);
         
