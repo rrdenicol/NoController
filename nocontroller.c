@@ -50,11 +50,10 @@ MESSAGE* _process_message(CONNECTION* conn, MESSAGE* msg) {
         uint64_t dpid = ofp_switch_features_get_datapath_id(msg->data);
         show_message("Switch dp_id=%lld\n", dpid);
         conn_set_dpid(conn, dpid);
-        return NULL;
     }
 
     if (type == OFPT_ERROR) {
-        show_message("Sending error message to app\n");
+        show_message("Received error message. Redirecting to app.\n");
     }
     
     return process_message(conn, msg);

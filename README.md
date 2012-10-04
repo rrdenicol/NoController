@@ -41,7 +41,7 @@ DEAL_WITH_ECHO_REQUEST: respond to echo requests
 DEAL_WITH_SWITCH_FEATURES: receive a switch features message and register the datapath ID
 DEAL_WITH_SENDING_ECHO_REQUESTS: send an echo request every 5 seconds
 ```
-Using the flags above, your application won't receive the respective messages being automatically treated.
+Using the flags above, your application won't receive the respective messages being automatically treated (except for the switch features message, which will be treated and redirected).
 
 The `process_message` function is called whenever a message goes through the controller to the application. The reply can be returned as one or more OpenFlow messages inside a single message, or NULL.
 
